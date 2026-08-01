@@ -1,0 +1,67 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 2.5cm 2cm; }
+  body { font-family: Helvetica, Arial, sans-serif; color: #182B2C; }
+  .header { text-align: center; border-bottom: 3px solid #0C4A5A; padding-bottom: 15px; margin-bottom: 30px; }
+  .header h1 { font-size: 15px; color: #0C4A5A; margin: 0; }
+  .header p { font-size: 10px; color: #555555; margin: 3px 0 0 0; }
+  .titre { text-align: center; font-size: 20px; font-weight: bold; margin: 35px 0; text-transform: uppercase; letter-spacing: 1px; color: #0C4A5A; }
+  .corps { font-size: 12px; line-height: 1.8; margin: 0 10px; text-align: justify; }
+  table.infos { width: 100%; margin: 25px 0; border-collapse: collapse; }
+  table.infos td { padding: 7px 0; font-size: 12px; border-bottom: 1px solid #EEEEEE; }
+  table.infos td.label { color: #555555; width: 45%; }
+  table.infos td.valeur { font-weight: bold; color: #0C4A5A; }
+  .signature { margin-top: 70px; text-align: right; font-size: 12px; margin-right: 20px; }
+  .footer { position: fixed; bottom: 0px; left: 0px; right: 0px; text-align: center; font-size: 8px; color: #999999; border-top: 1px solid #DDDDDD; padding-top: 8px; }
+  .numero { text-align: center; font-size: 10px; color: #999999; margin-top: -20px; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>ORDRE NATIONAL DES CHIRURGIENS-DENTISTES DU BURKINA FASO</h1>
+    <p>Ouagadougou &mdash; Burkina Faso</p>
+  </div>
+
+  <div class="titre">Attestation d'Inscription</div>
+  <div class="numero">N&deg; {{ praticien.numero_inscription }}</div>
+
+  <div class="corps">
+    <p>
+      Le Conseil National de l'Ordre National des Chirurgiens-Dentistes du Burkina Faso
+      atteste par la pr&eacute;sente que&nbsp;:
+    </p>
+
+    <table class="infos">
+      <tr><td class="label">Nom et Pr&eacute;nom(s)</td><td class="valeur">Dr {{ praticien.prenom }} {{ praticien.nom }}</td></tr>
+      <tr><td class="label">Num&eacute;ro d'inscription</td><td class="valeur">{{ praticien.numero_inscription }}</td></tr>
+      <tr><td class="label">Sp&eacute;cialit&eacute;</td><td class="valeur">{{ praticien.specialite }}</td></tr>
+      <tr><td class="label">Ville d'exercice</td><td class="valeur">{{ praticien.ville }}</td></tr>
+      <tr><td class="label">R&eacute;gion</td><td class="valeur">{{ praticien.region }}</td></tr>
+      <tr><td class="label">Date d'inscription</td><td class="valeur">{{ praticien.date_inscription|date:"d/m/Y" }}</td></tr>
+      <tr><td class="label">Statut</td><td class="valeur">Actif</td></tr>
+    </table>
+
+    <p>
+      est r&eacute;guli&egrave;rement inscrit(e) au tableau de l'Ordre National des
+      Chirurgiens-Dentistes du Burkina Faso et est autoris&eacute;(e) &agrave; exercer la
+      profession de chirurgien-dentiste sur le territoire national, conform&eacute;ment
+      aux textes l&eacute;gislatifs et r&eacute;glementaires en vigueur.
+    </p>
+
+    <p>
+      La pr&eacute;sente attestation est d&eacute;livr&eacute;e &agrave; l'int&eacute;ress&eacute;(e)
+      pour servir et valoir ce que de droit.
+    </p>
+  </div>
+
+  <div class="signature">
+    Fait &agrave; Ouagadougou, le {{ date_edition|date:"d/m/Y" }}<br/><br/><br/>
+    Le Pr&eacute;sident de l'Ordre
+  </div>
+
+  <div class="footer">
+    Ordre National des Chirurgiens-Dentistes du Burkina Faso &mdash; Document g&eacute;n&eacute;r&eacute; &eacute;lectroniquement le {{ date_edition|date:"d/m/Y" }}
+  </div>
+</body>
+</html>
