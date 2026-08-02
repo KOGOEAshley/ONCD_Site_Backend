@@ -18,8 +18,11 @@ from .models import Praticien
 from .serializers import PraticienSerializer, InscriptionSerializer
 
 
-class PraticienViewSet(viewsets.ModelViewSet):
-    queryset = Praticien.objects.all()
+class PraticienViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Annuaire public en lecture seule.
+    """
+    queryset = Praticien.objects.filter(statut="actif")
     serializer_class = PraticienSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ["nom", "prenom", "ville", "specialite"]
@@ -62,6 +65,10 @@ class InscriptionView(APIView):
 @parser_classes([MultiPartParser, FormParser, JSONParser])
 @permission_classes([IsAuthenticated])
 def mon_profil(request):
+    """
+    GET   /api/mon-profil/  → infos du praticien connecté
+    PATCH /api/mon-profil/  (multipart) → met à jour sa photo et/ou ses coordonnées
+    """
     try:
         praticien = request.user.praticien
     except Praticien.DoesNotExist:
@@ -71,7 +78,14 @@ def mon_profil(request):
         photo = request.FILES.get("photo")
         if photo:
             praticien.photo = photo
-            praticien.save()
+
+        champs_modifiables = ["telephone", "email", "ville", "region", "specialite"]
+        for champ in champs_modifiables:
+            valeur = request.data.get(champ)
+            if valeur is not None and valeur.strip() != "":
+                setattr(praticien, champ, valeur.strip())
+
+        praticien.save()
 
     return Response(PraticienSerializer(praticien).data)
 

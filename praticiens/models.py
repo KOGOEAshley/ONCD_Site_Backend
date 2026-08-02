@@ -12,6 +12,13 @@ class Praticien(models.Model):
         ("refuse", "Demande refusée"),
     ]
 
+    SECTEUR_CHOICES = [
+        ("liberal", "Chirurgien-Dentiste libéral"),
+        ("secteur_public", "Salarié secteur public"),
+        ("secteur_prive", "Salarié secteur privé"),
+        ("mixte", "Exercice mixte"),
+    ]
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -26,6 +33,7 @@ class Praticien(models.Model):
     ville = models.CharField(max_length=100)
     region = models.CharField(max_length=100)
     specialite = models.CharField(max_length=150)
+    secteur = models.CharField(max_length=20, choices=SECTEUR_CHOICES, default="liberal")
     telephone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
     statut = models.CharField(max_length=20, choices=STATUT_CHOICES, default="en_attente")

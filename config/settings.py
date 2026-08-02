@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'documents',
     'formations',
+    'actualites',
+    'evenements',
+    'elearning',
 ]
 
 REST_FRAMEWORK = {

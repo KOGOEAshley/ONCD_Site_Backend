@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Importer des participations depuis un fichier CSV</h1>
+
+<p>Le fichier doit être au format CSV, avec ces en-têtes de colonnes exacts :</p>
+<ul>
+  <li><code>numero_inscription</code> — le numéro ONCD du praticien (ex : ONCD-2026-003)</li>
+  <li><code>formation</code> — le nom exact de la formation (doit déjà exister dans "Formations")</li>
+  <li><code>heures_obtenues</code> — optionnel ; si vide, reprend les heures définies sur la formation</li>
+</ul>
+
+<p>Exemple de contenu :</p>
+<pre style="background:#f5f5f5;padding:12px;border-radius:6px;">numero_inscription,formation,heures_obtenues
+ONCD-2026-001,Anesthésie et urgences dentaires,8
+ONCD-2026-002,Anesthésie et urgences dentaires,8
+ONCD-2026-003,Prothèse dentaire moderne,10</pre>
+
+<p style="color:#B33A3A;">
+  ⚠️ Les praticiens et les formations doivent déjà exister dans le système avant l'import
+  (le CSV ne fait que les relier, il ne les crée pas).
+</p>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p>
+    <input type="file" name="fichier_csv" accept=".csv" required>
+  </p>
+  <input type="submit" value="Importer" class="default">
+</form>
+{% endblock %}

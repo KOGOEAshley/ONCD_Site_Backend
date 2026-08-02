@@ -23,6 +23,10 @@ class InscriptionSerializer(serializers.Serializer):
     ville = serializers.CharField(max_length=100)
     region = serializers.CharField(max_length=100)
     specialite = serializers.CharField(max_length=150)
+    secteur = serializers.ChoiceField(
+    choices=Praticien.SECTEUR_CHOICES,
+    error_messages={"required": "Veuillez indiquer votre secteur d'exercice."},
+)
     diplome = serializers.FileField(
     required=True,
     error_messages={
@@ -57,6 +61,7 @@ class InscriptionSerializer(serializers.Serializer):
                 ville=validated_data["ville"],
                 region=validated_data["region"],
                 specialite=validated_data["specialite"],
+                secteur=validated_data["secteur"],
                 diplome=validated_data.get("diplome"),
                 statut="en_attente",
                 date_inscription=timezone.now().date(),
