@@ -6,6 +6,9 @@ from formations.views import mes_formations, mon_attestation_formation
 from actualites.views import ActualiteViewSet
 from evenements.views import EvenementViewSet
 from elearning.views import ModuleELearningViewSet, mes_modules, terminer_module
+from exposition.views import ExposantViewSet, ReserverStandView
+from stages.views import StageViewSet, PostulerStageView
+from documents.views import DocumentTelechargeableViewSet
 
 router = DefaultRouter()
 router.register("praticiens", PraticienViewSet)
@@ -13,6 +16,9 @@ router.register("cliniques", CliniqueViewSet)
 router.register("actualites", ActualiteViewSet)
 router.register("evenements", EvenementViewSet)
 router.register("modules-elearning", ModuleELearningViewSet)
+router.register("exposants", ExposantViewSet)
+router.register("stages", StageViewSet)
+router.register("bibliotheque", DocumentTelechargeableViewSet)
 
 urlpatterns = router.urls + [
     path("login/", LoginView.as_view()),
@@ -23,4 +29,6 @@ urlpatterns = router.urls + [
     path("mon-attestation-formation/<int:participation_id>/", mon_attestation_formation),
     path("mes-modules/", mes_modules),
     path("terminer-module/<int:inscription_id>/", terminer_module),
+    path("reserver-stand/", ReserverStandView.as_view()),
+    path("postuler-stage/", PostulerStageView.as_view()),
 ]

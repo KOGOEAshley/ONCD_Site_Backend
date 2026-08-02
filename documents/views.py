@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import viewsets, filters
+from .models import DocumentTelechargeable
+from .serializers import DocumentTelechargeableSerializer
 
-# Create your views here.
+
+class DocumentTelechargeableViewSet(viewsets.ReadOnlyModelViewSet):
+    """Bibliothèque publique de documents téléchargeables."""
+
+    queryset = DocumentTelechargeable.objects.all()
+    serializer_class = DocumentTelechargeableSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["titre"]
