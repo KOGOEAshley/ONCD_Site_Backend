@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'elearning',
     'exposition',
     'stages',
+    'institution',
 ]
 
 REST_FRAMEWORK = {

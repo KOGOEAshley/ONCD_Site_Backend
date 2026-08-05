@@ -9,6 +9,7 @@ from elearning.views import ModuleELearningViewSet, mes_modules, terminer_module
 from exposition.views import ExposantViewSet, ReserverStandView
 from stages.views import StageViewSet, PostulerStageView
 from documents.views import DocumentTelechargeableViewSet
+from institution.views import MembreConseilViewSet
 
 router = DefaultRouter()
 router.register("praticiens", PraticienViewSet)
@@ -19,6 +20,7 @@ router.register("modules-elearning", ModuleELearningViewSet)
 router.register("exposants", ExposantViewSet)
 router.register("stages", StageViewSet)
 router.register("bibliotheque", DocumentTelechargeableViewSet)
+router.register("conseil", MembreConseilViewSet)
 
 urlpatterns = router.urls + [
     path("login/", LoginView.as_view()),
