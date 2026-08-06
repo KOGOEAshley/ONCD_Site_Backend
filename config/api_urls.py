@@ -10,6 +10,7 @@ from exposition.views import ExposantViewSet, ReserverStandView
 from stages.views import StageViewSet, PostulerStageView
 from documents.views import DocumentTelechargeableViewSet
 from institution.views import MembreConseilViewSet
+from cotisations.views import ma_cotisation, BaremeCotisationViewSet
 
 router = DefaultRouter()
 router.register("praticiens", PraticienViewSet)
@@ -21,6 +22,7 @@ router.register("exposants", ExposantViewSet)
 router.register("stages", StageViewSet)
 router.register("bibliotheque", DocumentTelechargeableViewSet)
 router.register("conseil", MembreConseilViewSet)
+router.register("bareme-cotisations", BaremeCotisationViewSet)
 
 urlpatterns = router.urls + [
     path("login/", LoginView.as_view()),
@@ -33,4 +35,5 @@ urlpatterns = router.urls + [
     path("terminer-module/<int:inscription_id>/", terminer_module),
     path("reserver-stand/", ReserverStandView.as_view()),
     path("postuler-stage/", PostulerStageView.as_view()),
+    path("ma-cotisation/", ma_cotisation),
 ]
