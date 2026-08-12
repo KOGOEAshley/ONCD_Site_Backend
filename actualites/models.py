@@ -19,6 +19,12 @@ class Actualite(models.Model):
     extrait = models.TextField(help_text="Court résumé affiché dans les listes (1-2 phrases).")
     contenu = models.TextField(help_text="Texte complet de l'article.", blank=True)
     auteur = models.CharField(max_length=150, blank=True)
+    image = models.ImageField(
+        upload_to="actualites/",
+        blank=True,
+        null=True,
+        help_text="Photo affichée juste après le titre de l'article (facultatif).",
+    )
     a_la_une = models.BooleanField(
         default=False,
         help_text="Une seule actualité à la fois devrait être 'à la une' idéalement.",
