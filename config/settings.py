@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'stages',
     'institution',
     'cotisations',
+    'enquete',
 ]
 
 REST_FRAMEWORK = {

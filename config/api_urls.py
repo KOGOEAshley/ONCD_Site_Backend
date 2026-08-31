@@ -11,6 +11,7 @@ from stages.views import StageViewSet, PostulerStageView
 from documents.views import DocumentTelechargeableViewSet
 from institution.views import MembreConseilViewSet
 from cotisations.views import ma_cotisation, BaremeCotisationViewSet
+from enquete.views import SoumettreFicheView
 
 router = DefaultRouter()
 router.register("praticiens", PraticienViewSet)
@@ -36,4 +37,5 @@ urlpatterns = router.urls + [
     path("reserver-stand/", ReserverStandView.as_view()),
     path("postuler-stage/", PostulerStageView.as_view()),
     path("ma-cotisation/", ma_cotisation),
+    path("soumettre-fiche-enquete/", SoumettreFicheView.as_view()),
 ]
